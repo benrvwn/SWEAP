@@ -45,8 +45,9 @@ Public Class Form2
                 ElseIf (status = 0) Then
                     txtUsername.Clear()
                     txtPassword.Clear()
-                    Me.Hide()
                     user_dashboard.Show()
+                    Me.Hide()
+
                 Else
                     MessageBox.Show("Invalid Username or Password", "Invalid", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
@@ -106,7 +107,7 @@ Public Class Form2
     End Sub
 
     Private Sub Guna2PictureBox1_Click(sender As Object, e As EventArgs) Handles Guna2PictureBox1.Click
-        Me.Close()
+        Application.Exit()
     End Sub
 
     'ANOTHER FORM TO CHANGE PASS

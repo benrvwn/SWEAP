@@ -179,6 +179,7 @@ Partial Class signups
         pBoxProfile = New Guna.UI2.WinForms.Guna2PictureBox()
         Label14 = New Label()
         Label13 = New Label()
+        ImageList1 = New ImageList(components)
         Panel1.SuspendLayout()
         Panel2.SuspendLayout()
         Guna2TabControl1.SuspendLayout()
@@ -389,13 +390,13 @@ Partial Class signups
         dateBday.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point)
         dateBday.Format = DateTimePickerFormat.Long
         dateBday.Location = New Point(33, 272)
-        dateBday.MaxDate = New DateTime(9998, 12, 31, 0, 0, 0, 0)
-        dateBday.MinDate = New DateTime(1753, 1, 1, 0, 0, 0, 0)
+        dateBday.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
+        dateBday.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
         dateBday.Name = "dateBday"
         dateBday.ShadowDecoration.CustomizableEdges = CustomizableEdges6
         dateBday.Size = New Size(289, 36)
         dateBday.TabIndex = 8
-        dateBday.Value = New DateTime(2023, 6, 15, 9, 33, 54, 293)
+        dateBday.Value = New Date(2023, 6, 15, 9, 33, 54, 293)
         ' 
         ' Label2
         ' 
@@ -1379,7 +1380,7 @@ Partial Class signups
         txtbxPass.Location = New Point(173, 201)
         txtbxPass.Margin = New Padding(0)
         txtbxPass.Name = "txtbxPass"
-        txtbxPass.PasswordChar = ChrW(0)
+        txtbxPass.PasswordChar = "*"c
         txtbxPass.PlaceholderText = ""
         txtbxPass.SelectedText = ""
         txtbxPass.ShadowDecoration.CustomizableEdges = CustomizableEdges72
@@ -1464,6 +1465,13 @@ Partial Class signups
         Label13.Size = New Size(87, 18)
         Label13.TabIndex = 105
         Label13.Text = "USERNAME"
+        ' 
+        ' ImageList1
+        ' 
+        ImageList1.ColorDepth = ColorDepth.Depth32Bit
+        ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), ImageListStreamer)
+        ImageList1.TransparentColor = Color.Transparent
+        ImageList1.Images.SetKeyName(0, "profile (3).png")
         ' 
         ' signups
         ' 
@@ -1566,4 +1574,5 @@ Partial Class signups
     Friend WithEvents Guna2Button5 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Button6 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Button7 As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents ImageList1 As ImageList
 End Class
