@@ -222,7 +222,6 @@ Public Class signups
             If txtbxBF5.Text <> "" Then
                 add_benefi(txtbxUser.Text, txtbxBF5.Text, txtbxBR5.Text, txtBA5.Text)
             End If
-            Disabled()
 
             comboOffice.SelectedIndex = -1
             comboCommit.SelectedIndex = -1
@@ -230,11 +229,11 @@ Public Class signups
             comboPos.SelectedIndex = -1
             pBoxProfile.BackgroundImage = Image.FromFile(location & "\Others\images\unknown.jpg")
             pBoxProfile.BackgroundImageLayout = ImageLayout.Stretch
+            ClearAllTextboxes(Me)
+            Disabled()
             Guna2TabControl1.SelectedTab = TabPage1
             Form2.Visible = True
-            Me.Visible = False
-            ClearAllTextboxes(Me)
-
+            Me.Close()
         Else
             MessageBox.Show(message, "Entered Invalid", MessageBoxButtons.OK, MessageBoxIcon.Error)
             i = 0
@@ -272,23 +271,23 @@ Public Class signups
         End If
     End Sub
 
-    Private Sub txtBA1_KeyPress(sender As Object, e As EventArgs) Handles txtBA1.KeyPress
+    Private Sub txtBA1_KeyPress(sender As Object, e As EventArgs)
         txtContact_KeyPress(sender, e)
     End Sub
 
-    Private Sub txtBA2_KeyPress(sender As Object, e As EventArgs) Handles txtBA2.KeyPress
+    Private Sub txtBA2_KeyPress(sender As Object, e As EventArgs)
         txtContact_KeyPress(sender, e)
     End Sub
 
-    Private Sub txtBA3_KeyPress(sender As Object, e As EventArgs) Handles txtBA3.KeyPress
+    Private Sub txtBA3_KeyPress(sender As Object, e As EventArgs)
         txtContact_KeyPress(sender, e)
     End Sub
 
-    Private Sub txtBA4_KeyPress(sender As Object, e As EventArgs) Handles txtBA4.KeyPress
+    Private Sub txtBA4_KeyPress(sender As Object, e As EventArgs)
         txtContact_KeyPress(sender, e)
     End Sub
 
-    Private Sub txtBA5_Keypress(sender As Object, e As EventArgs) Handles txtBA5.KeyPress
+    Private Sub txtBA5_Keypress(sender As Object, e As EventArgs)
         txtContact_KeyPress(sender, e)
     End Sub
 
@@ -333,39 +332,39 @@ Public Class signups
         txtFname_KeyPress(sender, e)
     End Sub
 
-    Private Sub txtbxBF2_KeyPress(sender As Object, e As EventArgs) Handles txtbxBF2.KeyPress
+    Private Sub txtbxBF2_KeyPress(sender As Object, e As EventArgs)
         txtFname_KeyPress(sender, e)
     End Sub
 
-    Private Sub txtbxBF3_KeyPress(sender As Object, e As EventArgs) Handles txtbxBF3.KeyPress
+    Private Sub txtbxBF3_KeyPress(sender As Object, e As EventArgs)
         txtFname_KeyPress(sender, e)
     End Sub
 
-    Private Sub txtbxBF4_KeyPress(sender As Object, e As EventArgs) Handles txtbxBF4.KeyPress
+    Private Sub txtbxBF4_KeyPress(sender As Object, e As EventArgs)
         txtFname_KeyPress(sender, e)
     End Sub
 
-    Private Sub txtbxBF5_KeyPress(sender As Object, e As EventArgs) Handles txtbxBF5.KeyPress
+    Private Sub txtbxBF5_KeyPress(sender As Object, e As EventArgs)
         txtFname_KeyPress(sender, e)
     End Sub
 
-    Private Sub txtbxBR1_KeyPress(sender As Object, e As EventArgs) Handles txtbxBR1.KeyPress
+    Private Sub txtbxBR1_KeyPress(sender As Object, e As EventArgs)
         txtFname_KeyPress(sender, e)
     End Sub
 
-    Private Sub txtbxBR2_KeyPress(sender As Object, e As EventArgs) Handles txtbxBR2.KeyPress
+    Private Sub txtbxBR2_KeyPress(sender As Object, e As EventArgs)
         txtFname_KeyPress(sender, e)
     End Sub
 
-    Private Sub txtbxBR3_KeyPress(sender As Object, e As EventArgs) Handles txtbxBR3.KeyPress
+    Private Sub txtbxBR3_KeyPress(sender As Object, e As EventArgs)
         txtFname_KeyPress(sender, e)
     End Sub
 
-    Private Sub txtbxBR4_KeyPress(sender As Object, e As EventArgs) Handles txtbxBR4.KeyPress
+    Private Sub txtbxBR4_KeyPress(sender As Object, e As EventArgs)
         txtFname_KeyPress(sender, e)
     End Sub
 
-    Private Sub txtbxBR5_KeyPress(sender As Object, e As EventArgs) Handles txtbxBR5.KeyPress
+    Private Sub txtbxBR5_KeyPress(sender As Object, e As EventArgs)
         txtFname_KeyPress(sender, e)
     End Sub
 
@@ -375,9 +374,6 @@ Public Class signups
     Private Sub Guna2Button5_Click(sender As Object, e As EventArgs) Handles Guna2Button5.Click
         Dim location As String = My.Application.Info.DirectoryPath
 
-        Form2.Show()
-        Me.Hide()
-        Disabled()
         comboOffice.SelectedIndex = -1
         comboCommit.SelectedIndex = -1
         comboEmployStat.SelectedIndex = -1
@@ -385,6 +381,12 @@ Public Class signups
         pBoxProfile.BackgroundImage = Image.FromFile(location & "\Others\images\unknown.jpg")
         pBoxProfile.BackgroundImageLayout = ImageLayout.Stretch
         ClearAllTextboxes(Me)
+        Disabled()
+        Form2.Show()
+        Me.Close()
+
+
+
     End Sub
 
     Private Sub Guna2Button6_Click(sender As Object, e As EventArgs) Handles Guna2Button6.Click
