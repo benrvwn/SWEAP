@@ -715,12 +715,14 @@ Public Class Loan
                 worksheet.Column(columnIndex).Width = 20
             Next
 
-            filePath = location & "\Others\exported\" & fileOwner & "_loan_Schedule.xlsx"
+
+
+            filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\" & fileOwner & "_loan_Schedule.xlsx"
 
             If IsFileExists(filePath) Then
                 Dim random As New Random()
                 Dim randomNum As Integer = random.Next(1, 501)
-                filePath = location & "\Others\exported\" & fileOwner & "_loan_Schedule" & randomNum & ".xlsx"
+                filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\" & fileOwner & "_loan_Schedule" & randomNum & ".xlsx"
                 package.SaveAs(New System.IO.FileInfo(filePath))
                 MsgBox("File saved to " & filePath)
             Else
@@ -926,13 +928,13 @@ Public Class Loan
             'Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
             'Dim location As String = locateProject.Substring(0, indext)
 
-            filePath = location & "\Others\exported\" & pickContriOffice.SelectedItem & "_Contribution.xlsx"
+            filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\" & pickContriOffice.SelectedItem & "_Contribution.xlsx"
 
             ' Check if the file already exists, if so, add a random number to the file name
             If IsFileExists(filePath) Then
                 Dim random As New Random()
                 Dim randomNum As Integer = random.Next(1, 501)
-                filePath = location & "\Others\exported\" & pickContriOffice.SelectedItem & "_Contribution" & randomNum & ".xlsx"
+                filePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) & "\" & pickContriOffice.SelectedItem & "_Contribution" & randomNum & ".xlsx"
                 package.SaveAs(New System.IO.FileInfo(filePath))
                 MessageBox.Show("File saved to " & filePath, "Response")
             Else

@@ -13,10 +13,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Others\icons\beneficiary %282%29.png" />
+    <None Remove="Others\icons\dashboard %283%29.png" />
+    <None Remove="Others\icons\house %281%29.png" />
+    <None Remove="Others\icons\man.png" />
+    <None Remove="Others\icons\settings.png" />
+    <None Remove="Others\images\user.png" />
     <None Remove="Others\lastPort.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Others\icons\beneficiary (2).png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Others\icons\dashboard (3).png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Others\icons\house (1).png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Others\icons\man.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Others\icons\settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Others\images\user.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Others\lastPort.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
