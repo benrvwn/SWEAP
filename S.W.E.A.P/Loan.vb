@@ -698,9 +698,9 @@ Public Class Loan
             dataRange.Style.Border.Bottom.Color.SetColor(System.Drawing.Color.Black)
             Dim font As ExcelFont = dataRange.Style.Font
             font.Color.SetColor(System.Drawing.Color.Black)
-            Dim locateProject As String = My.Application.Info.DirectoryPath
-            Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
-            Dim location As String = locateProject.Substring(0, indext)
+            Dim location As String = My.Application.Info.DirectoryPath
+            'Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
+            'Dim location As String = locateProject.Substring(0, indext)
 
             For columnIndex As Integer = 1 To 2
                 worksheet.Column(columnIndex).Width = 30
@@ -715,12 +715,12 @@ Public Class Loan
                 worksheet.Column(columnIndex).Width = 20
             Next
 
-            filePath = location & "\Resources\Exported_file\" & fileOwner & "_loan_Schedule.xlsx"
+            filePath = location & "\Others\exported\" & fileOwner & "_loan_Schedule.xlsx"
 
             If IsFileExists(filePath) Then
                 Dim random As New Random()
                 Dim randomNum As Integer = random.Next(1, 501)
-                filePath = location & "\Resources\Exported_file\" & fileOwner & "_loan_Schedule" & randomNum & ".xlsx"
+                filePath = location & "\Others\exported\" & fileOwner & "_loan_Schedule" & randomNum & ".xlsx"
                 package.SaveAs(New System.IO.FileInfo(filePath))
                 MsgBox("File saved to " & filePath)
             Else
@@ -922,17 +922,17 @@ Public Class Loan
             Next
 
             ' Specify the file path to save the Excel file
-            Dim locateProject As String = My.Application.Info.DirectoryPath
-            Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
-            Dim location As String = locateProject.Substring(0, indext)
+            Dim location As String = My.Application.Info.DirectoryPath
+            'Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
+            'Dim location As String = locateProject.Substring(0, indext)
 
-            filePath = location & "\Resources\Exported_file\" & pickContriOffice.SelectedItem & "_Contribution.xlsx"
+            filePath = location & "\Others\exported\" & pickContriOffice.SelectedItem & "_Contribution.xlsx"
 
             ' Check if the file already exists, if so, add a random number to the file name
             If IsFileExists(filePath) Then
                 Dim random As New Random()
                 Dim randomNum As Integer = random.Next(1, 501)
-                filePath = location & "\Resources\Exported_file\" & pickContriOffice.SelectedItem & "_Contribution" & randomNum & ".xlsx"
+                filePath = location & "\Others\exported\" & pickContriOffice.SelectedItem & "_Contribution" & randomNum & ".xlsx"
                 package.SaveAs(New System.IO.FileInfo(filePath))
                 MessageBox.Show("File saved to " & filePath, "Response")
             Else

@@ -94,7 +94,7 @@ Public Class admindash
                 dgContributions.Rows.Add(rid.Item("user_id"), rid.Item("fullname"), rid.Item("position"), rid.Item("contribution1"), rid.Item("contribution2"), rid.Item("contribution3"), rid.Item("contribution4"), rid.Item("contribution5"))
             End While
         Catch ex As Exception
-            MsgBox("contribution data fetching doesn't work")
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             conn.Close()
         End Try
@@ -112,7 +112,7 @@ Public Class admindash
                 lblContri5Total.Text = rid.Item("contri5")
             End While
         Catch ex As Exception
-            MsgBox("contribution dashboard doesn't work.")
+            MessageBox.Show("contribution dashboard doesn't work.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             conn.Close()
         End Try
@@ -136,6 +136,7 @@ Public Class admindash
                 currentBen = rid.GetInt32("counted")
             End While
         Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             conn.Close()
         End Try
@@ -151,7 +152,7 @@ Public Class admindash
             End While
 
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             conn.Close()
         End Try
@@ -168,6 +169,7 @@ Public Class admindash
                 dgBeneficiaries.Rows.Add(rid.Item("id"), rid.Item("full_name"), rid.Item("relationship"), rid.Item("age"))
             End While
         Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             conn.Close()
         End Try
@@ -182,6 +184,7 @@ Public Class admindash
                 dgMembers.Rows.Add(rid.Item("id"), rid.Item("full_name"), rid.Item("office"), rid.Item("position"), rid.Item("employment_status"), rid.Item("email"))
             End While
         Catch ex As Exception
+
         Finally
             conn.Close()
         End Try
@@ -197,6 +200,7 @@ Public Class admindash
                 dgMembersFT.Rows.Add(rid.Item("id"), rid.Item("full_name"), rid.Item("office"), rid.Item("position"), rid.Item("committee"), rid.Item("balance"))
             End While
         Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             conn.Close()
         End Try
@@ -230,12 +234,12 @@ Public Class admindash
                     txtEditAddBenAge.Clear()
                 End If
             Catch ex As Exception
-                MsgBox("Operation field")
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Finally
                 conn.Close()
             End Try
         Else
-            MsgBox("Limit reached.")
+            MessageBox.Show("Limit reached.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             txtEditAddBen.Enabled = False
             txtEditAddBenAge.Enabled = False
             txtEditAddBenRel.Enabled = False
@@ -330,14 +334,14 @@ Public Class admindash
         End If
 
 
-        Dim locateProject As String = My.Application.Info.DirectoryPath
-        Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
-        Dim location As String = locateProject.Substring(0, indext)
+        Dim location As String = My.Application.Info.DirectoryPath
+        'Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
+        'Dim location As String = locateProject.Substring(0, indext)
         Dim imageInput As String
 
         Dim random As New Random()
         Dim randomNum As Integer = random.Next(1, 501)
-        Dim destinationPath As String = location & "\Resources\user_profile\" & txtEditUsername.Text & randomNum & getExtension
+        Dim destinationPath As String = location & "\Others\images\" & txtEditUsername.Text & randomNum & getExtension
 
         Try
             conn.Open() ' Opens a connection to the database.
@@ -383,11 +387,11 @@ Public Class admindash
             cmd.Parameters.AddWithValue("@ADMIN", adminValue)
             cmd.Parameters.AddWithValue("@ID", selectedId)
             cmd.ExecuteNonQuery()
-            MsgBox("successfully updated.")
+            MessageBox.Show("Update succeeded!", "Response", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             'Guna2TabControl1.SelectedTab = personal
         Catch ex As Exception
-            MsgBox("Error:" & ex.Message)
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             conn.Close()
         End Try
@@ -404,17 +408,17 @@ Public Class admindash
             other.Enabled = False
             tabEdit.Show()
             pnlEmployee.Hide()
-            Dim locateProject As String = My.Application.Info.DirectoryPath
-            Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
-            Dim location As String = locateProject.Substring(0, indext)
+            Dim location As String = My.Application.Info.DirectoryPath
+            'Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
+            ' Dim location As String = locateProject.Substring(0, indext)
             Try
                 conn.Open()
                 Dim cmd As New MySqlCommand("select * from users left join user_info on users.id = user_info.user_id where users.id=@ID", conn)
                 cmd.Parameters.AddWithValue("@ID", selectedId)
                 rid = cmd.ExecuteReader
                 While rid.Read
-                    If File.Exists(location & "\Resources\user_profile\" & rid.GetString("image")) Then
-                        pBoxEditProfile.BackgroundImage = Image.FromFile(location & "\Resources\user_profile\" & rid.GetString("image"))
+                    If File.Exists(location & "\Others\images\" & rid.GetString("image")) Then
+                        pBoxEditProfile.BackgroundImage = Image.FromFile(location & "\Others\images\" & rid.GetString("image"))
                     Else
                         pBoxEditProfile.BackgroundImage = Nothing
                     End If
@@ -438,13 +442,14 @@ Public Class admindash
                     End If
                 End While
             Catch ex As Exception
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Finally
                 conn.Close()
             End Try
         ElseIf e.ColumnIndex = 7 AndAlso e.RowIndex >= 0 Then '-------------FOR DELETE
-            Dim locateProject As String = My.Application.Info.DirectoryPath
-            Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
-            Dim location As String = locateProject.Substring(0, indext)
+            Dim location As String = My.Application.Info.DirectoryPath
+            'Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
+            'Dim location As String = locateProject.Substring(0, indext)
             Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete" & dgMembers.CurrentRow.Cells(1).Value.ToString() & "?", "Confirmation", MessageBoxButtons.YesNo)
             If result = DialogResult.Yes Then
                 Dim selectedId As Integer = Convert.ToInt32(dgMembers.CurrentRow.Cells(0).Value)
@@ -472,13 +477,13 @@ Public Class admindash
                     deleteCmd.ExecuteNonQuery()
 
                     ' File Deletion
-                    Dim imagePath As String = Path.Combine(location & "Resources\user_profile" & imageFilename)
+                    Dim imagePath As String = Path.Combine(location & "\Others\images\" & imageFilename)
                     If File.Exists(imagePath) Then
                         File.Delete(imagePath)
                         MessageBox.Show("Deleted Successfully!")
                     End If
                 Catch ex As Exception
-                    MsgBox(ex.Message)
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Finally
                     conn.Close()
                 End Try
@@ -502,6 +507,7 @@ Public Class admindash
                 lblAdminName.Text = rid.GetString("first_name") + "!"
             End While
         Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             conn.Close()
         End Try
@@ -513,7 +519,7 @@ Public Class admindash
 
     Private Sub dgBeneficiaries_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgBeneficiaries.CellClick
         If e.ColumnIndex = 4 AndAlso e.RowIndex >= 0 Then '-------------FOR DELETE
-            Dim result As DialogResult = MessageBox.Show("are you sure you want to remove " & dgBeneficiaries.CurrentRow.Cells(1).Value.ToString() &
+            Dim result As DialogResult = MessageBox.Show("Are you sure you want to remove " & dgBeneficiaries.CurrentRow.Cells(1).Value.ToString() &
                                               " from beneficiaries?", "confirmation", MessageBoxButtons.YesNo)
             If result = DialogResult.Yes Then
                 Try
@@ -521,10 +527,10 @@ Public Class admindash
                     Dim cmd As New MySqlCommand("delete from beneficiaries where id=@id", conn)
                     cmd.Parameters.AddWithValue("@id", dgBeneficiaries.CurrentRow.Cells(0).Value.ToString())
                     cmd.ExecuteNonQuery()
-                    MsgBox("record has been removed.")
+                    MessageBox.Show("Record deleted.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     beneficiariesRecord()
                 Catch ex As Exception
-                    MsgBox("operation failed")
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Finally
                     conn.Close()
                 End Try
@@ -657,7 +663,7 @@ user_info.user_id = contributions.user_id group by office", conn)
                     dgMembers.Rows.Add(rid.Item("id"), rid.Item("full_name"), rid.Item("office"), rid.Item("position"), rid.Item("employment_status"), rid.Item("email"))
                 End While
             Catch ex As Exception
-                MsgBox("doesn't Work")
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Finally
                 conn.Close()
             End Try

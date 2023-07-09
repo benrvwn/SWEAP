@@ -4,13 +4,12 @@ Public Class serverChange
     Private Sub Guna2Button1_Click(sender As Object, e As EventArgs) Handles Guna2Button1.Click
         Form2.query = "server=" & txtIp.Text & ";port=" & txtPort.Text & ";username=" & txtUsername.Text & ";password=" & txtPassword.Text & ";database=" & txtDatabase.Text
         Form2.conn.ConnectionString = Form2.query
-
         Try
             Form2.conn.Open()
-            Dim locateProject As String = My.Application.Info.DirectoryPath
-            Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
-            Dim location As String = locateProject.Substring(0, indext)
-            Dim filepath As String = location & "\Resources\lastPort.txt"
+            Dim location As String = My.Application.Info.DirectoryPath
+            'Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
+            'Dim location As String = locateProject.Substring(0, indext)
+            Dim filepath As String = location & "\Others\lastPort.txt"
             'clears the text file of the last log ports addresses
             Using writer As New System.IO.StreamWriter(filepath, False)
                 writer.Write(String.Empty)

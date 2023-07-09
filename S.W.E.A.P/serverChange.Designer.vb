@@ -78,7 +78,7 @@ Partial Class serverChange
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point)
         Label2.ForeColor = SystemColors.ActiveCaptionText
-        Label2.Location = New Point(2, 47)
+        Label2.Location = New Point(4, 47)
         Label2.Name = "Label2"
         Label2.Size = New Size(367, 91)
         Label2.TabIndex = 2

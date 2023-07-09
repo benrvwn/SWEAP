@@ -83,10 +83,10 @@ Public Class Form2
     End Sub
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load '--------AUTOLOAD
-        Dim locateProject As String = My.Application.Info.DirectoryPath
-        Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
-        Dim location As String = locateProject.Substring(0, indext)
-        Dim filepath As String = location & "\Resources\lastPort.txt"
+        Dim location As String = My.Application.Info.DirectoryPath
+        'Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
+        'Dim location As String = locateProject.Substring(0, indext)
+        Dim filepath As String = location & "\Others\lastPort.txt"
         Dim ip As String
         Dim port As String
         Dim username As String

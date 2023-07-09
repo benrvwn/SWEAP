@@ -19,19 +19,19 @@ Public Class user_dashboard
     Dim getExtension As String
     ' This variable is used to store the file extension of a file.
 
-    Dim locateProject As String = My.Application.Info.DirectoryPath
+    Dim location As String = My.Application.Info.DirectoryPath
     ' My.Application.Info.DirectoryPath retrieves the directory path of the current application.
 
-    Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
+    'Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
     ' IndexOf method is used to find the position of a specific string within another string.
 
-    Dim location As String = locateProject.Substring(0, indext)
+    'Dim location As String = locateProject.Substring(0, indext)
     ' Substring method is used to extract a portion of a string based on the specified start and end indexes.
 
-    Dim destinationPath As String = location & "\Resources\user_profile"
+    Dim destinationPath As String = location & "\Others\images"
     ' This variable is used to store the destination path for the user profile.
 
-    Dim destinationIconPath As String = location & "\Resources\"
+    Dim destinationIconPath As String = location & "\Others\"
     ' This variable is used to store the destination path for icons.
 
     Dim dashPath As String = "dashboard (3).png"
@@ -154,7 +154,7 @@ Public Class user_dashboard
                 End If
             End While
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             conn.Close() ' Closes the database connection.
         End Try
@@ -215,7 +215,7 @@ Public Class user_dashboard
                 ' Adds a new row to the BeneficiariesDGV DataGridView and populates it with the values from the current row of the DataReader.
             End While
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             conn.Close()  'Closes the database connection.
         End Try
@@ -285,7 +285,7 @@ Public Class user_dashboard
                 cmbxcomm.SelectedItem = dr.GetString("committee")
             End While
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             conn.Close()
         End Try
@@ -305,7 +305,7 @@ Public Class user_dashboard
                 BeneficiariesDGV.Rows.Add(dr.Item("user_id"), dr.Item("full_name"), dr.Item("age"), dr.Item("relationship")) ' Adds a new row to the BeneficiariesDGV DataGridView and populates it with the values from the current row of the DataReader.
             End While
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             conn.Close() ' Closes the database connection.
         End Try
@@ -315,14 +315,14 @@ Public Class user_dashboard
 
     'UPDATE FUNCTION---------------------------------------------
     Public Sub Update()
-        Dim locateProject As String = My.Application.Info.DirectoryPath
-        Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
-        Dim location As String = locateProject.Substring(0, indext)
+        Dim location As String = My.Application.Info.DirectoryPath
+        'Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
+        'Dim location As String = locateProject.Substring(0, indext)
         Dim imageInput As String
 
         Dim random As New Random()
         Dim randomNum As Integer = random.Next(1, 501)
-        Dim destinationPath As String = location & "\Resources\user_profile\" & txtbxusername.Text & randomNum & getExtension
+        Dim destinationPath As String = location & "\Others\images\" & txtbxusername.Text & randomNum & getExtension
 
         Try
             conn.Open() ' Opens a connection to the database.
@@ -372,7 +372,7 @@ Public Class user_dashboard
             MessageBox.Show("Updated successfully!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         Catch ex As Exception
-            MsgBox("Error: " & ex.Message)
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             conn.Close() ' Closes the connection to the database.
         End Try
@@ -477,7 +477,7 @@ Public Class user_dashboard
                 End If
             End While
         Catch ex As Exception
-            MsgBox(ex.Message) ' Closes the database connection.
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error) ' Closes the database connection.
         Finally
             conn.Close()
         End Try

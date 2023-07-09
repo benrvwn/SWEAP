@@ -65,7 +65,7 @@ Public Class signups
             cmd.Parameters.AddWithValue("@BAGE", bage)
             cmd.ExecuteNonQuery()
         Catch ex As Exception
-            MsgBox("beneficiary function doesn't work.")
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             conn.Close()
         End Try
@@ -90,7 +90,7 @@ Public Class signups
             Guna2TabControl1.SelectedTab = TabPage2
             TabPage2.Enabled = True
         Else
-            MsgBox(message)
+            MessageBox.Show(message, "Entered Invalid", MessageBoxButtons.OK, MessageBoxIcon.Error)
             i = 0
             message = ""
             Array.Clear(error_msg, 0, error_msg.Length)
@@ -113,7 +113,7 @@ Public Class signups
             Guna2TabControl1.SelectedTab = TabPage3
             TabPage3.Enabled = True
         Else
-            MsgBox(message)
+            MessageBox.Show(message, "Entered Invalid", MessageBoxButtons.OK, MessageBoxIcon.Error)
             i = 0
             message = ""
             Array.Clear(error_msg, 0, error_msg.Length)
@@ -136,7 +136,7 @@ Public Class signups
             Guna2TabControl1.SelectedTab = TabPage4
             TabPage4.Enabled = True
         Else
-            MsgBox(message)
+            MessageBox.Show(message, "Entered Invalid", MessageBoxButtons.OK, MessageBoxIcon.Error)
             i = 0
             message = ""
             Array.Clear(error_msg, 0, error_msg.Length)
@@ -154,17 +154,17 @@ Public Class signups
         End While
         If message = "" Then
             '----------------------------GETTING IMAGE-------------------------------------------------
-            Dim locateProject As String = My.Application.Info.DirectoryPath
-            Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
-            Dim location As String = locateProject.Substring(0, indext)
+            Dim location As String = My.Application.Info.DirectoryPath
+            'Dim indext As Integer = locateProject.IndexOf("bin\Debug\net6.0-windows")
+            'Dim location As String = locateProject.Substring(0, indext)
             Dim opf As New OpenFileDialog
             Dim imageInput As String
 
-            Dim destinationPath As String = location & "\Resources\user_profile\" & txtbxUser.Text & getExtension
+            Dim destinationPath As String = location & "\Others\images\" & txtbxUser.Text & getExtension
             If IsFileExists(destinationPath) Then
                 Dim random As New Random()
                 Dim randomNum As Integer = random.Next(1, 501)
-                destinationPath = location & "\Resources\user_profile\" & txtbxUser.Text & randomNum & getExtension
+                destinationPath = location & "\Others\images\" & txtbxUser.Text & randomNum & getExtension
                 File.Copy(sourceFilePath, destinationPath, 0)
                 imageInput = "\" & txtbxUser.Text & randomNum & getExtension
             Else
@@ -227,7 +227,7 @@ Public Class signups
             comboCommit.SelectedIndex = -1
             comboEmployStat.SelectedIndex = -1
             comboPos.SelectedIndex = -1
-            pBoxProfile.BackgroundImage = Image.FromFile(location & "\Resources\profile (3).png")
+            pBoxProfile.BackgroundImage = Image.FromFile(location & "\Others\images\unknown.jpg")
             pBoxProfile.BackgroundImageLayout = ImageLayout.Stretch
             Guna2TabControl1.SelectedTab = TabPage1
             Form2.Visible = True
@@ -235,7 +235,7 @@ Public Class signups
             ClearAllTextboxes(Me)
 
         Else
-            MsgBox(message)
+            MessageBox.Show(message, "Entered Invalid", MessageBoxButtons.OK, MessageBoxIcon.Error)
             i = 0
             message = ""
             Array.Clear(error_msg, 0, error_msg.Length)
