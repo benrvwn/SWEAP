@@ -16,6 +16,10 @@ Public Class signups
     Dim getExtension As String
 
     Private Sub signups_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Disabled()
+    End Sub
+
+    Public Sub Disabled()
         TabPage2.Enabled = False
         TabPage3.Enabled = False
         TabPage3.Enabled = False
@@ -218,10 +222,7 @@ Public Class signups
             If txtbxBF5.Text <> "" Then
                 add_benefi(txtbxUser.Text, txtbxBF5.Text, txtbxBR5.Text, txtBA5.Text)
             End If
-            TabPage2.Enabled = False
-            TabPage3.Enabled = False
-            TabPage3.Enabled = False
-            TabPage4.Enabled = False
+            Disabled()
 
             comboOffice.SelectedIndex = -1
             comboCommit.SelectedIndex = -1
@@ -372,8 +373,17 @@ Public Class signups
 
     '----this section is backkkk buttons -------------------------------'
     Private Sub Guna2Button5_Click(sender As Object, e As EventArgs) Handles Guna2Button5.Click
+        Dim location As String = My.Application.Info.DirectoryPath
+
         Form2.Show()
         Me.Hide()
+        Disabled()
+        comboOffice.SelectedIndex = -1
+        comboCommit.SelectedIndex = -1
+        comboEmployStat.SelectedIndex = -1
+        comboPos.SelectedIndex = -1
+        pBoxProfile.BackgroundImage = Image.FromFile(location & "\Others\images\unknown.jpg")
+        pBoxProfile.BackgroundImageLayout = ImageLayout.Stretch
         ClearAllTextboxes(Me)
     End Sub
 

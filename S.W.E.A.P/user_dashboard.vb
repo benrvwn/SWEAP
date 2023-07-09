@@ -31,23 +31,9 @@ Public Class user_dashboard
     Dim destinationPath As String = location & "\Others\images"
     ' This variable is used to store the destination path for the user profile.
 
-    Dim destinationIconPath As String = location & "\Others\"
-    ' This variable is used to store the destination path for icons.
 
-    Dim dashPath As String = "dashboard (3).png"
-    ' This variable stores the file name of the dashboard image.
 
-    Dim profPath As String = "man.png"
-    ' This variable stores the file name of the default profile image.
 
-    Dim benefPath As String = "beneficiary (2).png"
-    ' This variable stores the file name of the beneficiary image.
-
-    Dim settingPath As String = "settings.png"
-    ' This variable stores the file name of the settings image.
-
-    Dim Home As String = "house (1).png"
-    ' This variable stores the file name of the home image.
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         ' Timer1_Tick is an event handler that executes when the Timer1's interval has elapsed.
@@ -83,6 +69,7 @@ Public Class user_dashboard
         Dashboard()
         ' A method or function named Dashboard is called.
 
+
         conn.Open()
         Dim cmd As New MySqlCommand("select alias from contri_types", conn)
         dr = cmd.ExecuteReader()
@@ -103,7 +90,6 @@ Public Class user_dashboard
             rowIndex += 1
         End While
         conn.Close()
-
     End Sub
 
 
@@ -170,32 +156,33 @@ Public Class user_dashboard
             Me.Hide() ' Hides the current form.
             Form2.Show() ' Shows the Form2.
             lblFromTitle.Text = "Home" ' Sets the text of lblFromTitle label to "Home".
-            iconFromtitle.Image = Image.FromFile(destinationIconPath + Home) ' Sets the image of iconFromtitle PictureBox to the image located at the destinationIconPath concatenated with the "Home" file name.
+            iconFromtitle.Image = Image.FromFile(location & "\Others\icons\house (1).png") ' Sets the image of iconFromtitle PictureBox to the image located at the destinationIconPath concatenated with the "Home" file name.
         End If
 
     End Sub
 
 
     Private Sub Guna2TabControl1_Selected(sender As Object, e As TabControlEventArgs) Handles Guna2TabControl1.Selected
-        If Guna2TabControl1.SelectedTab Is tabDashboard Then 'If the selected tab is "tabDashboard"...
-            lblFromTitle.Text = "Dashboard" ' Sets the text of lblFromTitle label to "Dashboard"
-            iconFromtitle.Image = Image.FromFile(destinationIconPath + dashPath) ' Sets the image of iconFromtitle PictureBox to the image located at the destinationIconPath concatenated with the dashPath file name.
+        If Guna2TabControl1.SelectedTab Is tabDashboard Then ' If the selected tab is "tabDashboard"...
+            lblFromTitle.Text = "Dashboard" ' Sets the text of lblFromTitle label to "Dashboard".
+            iconFromtitle.Image = Image.FromFile(location & "\Others\icons\dashboard (3).png") ' Sets the image of iconFromtitle PictureBox to the image located at the specified path.
             Dashboard() ' Calls the Dashboard() function to populate the dashboard information.
         ElseIf Guna2TabControl1.SelectedTab Is tabProfile Then ' If the selected tab is "tabProfile"...
             lblFromTitle.Text = "Profile" ' Sets the text of lblFromTitle label to "Profile".
-            iconFromtitle.Image = Image.FromFile(destinationIconPath + profPath) ' Sets the image of iconFromtitle PictureBox to the image located at the destinationIconPath concatenated with the profPath file name.
+            iconFromtitle.Image = Image.FromFile(location & "\Others\icons\man.png") ' Sets the image of iconFromtitle PictureBox to the image located at the specified path.
             Get_info() ' Calls the Get_info() function to retrieve and display the user's profile information.
         ElseIf Guna2TabControl1.SelectedTab Is tabBeneficiary Then ' If the selected tab is "tabBeneficiary"...
             lblFromTitle.Text = "Beneficiary" ' Sets the text of lblFromTitle label to "Beneficiary".
-            iconFromtitle.Image = Image.FromFile(destinationIconPath + benefPath) ' Sets the image of iconFromtitle PictureBox to the image located at the destinationIconPath concatenated with the benefPath file name.
+            iconFromtitle.Image = Image.FromFile(location & "\Others\icons\beneficiary (2).png") ' Sets the image of iconFromtitle PictureBox to the image located at the specified path.
             DG_Load() ' Calls the DG_Load() function to load and display the beneficiary data in the DataGridView.
         ElseIf Guna2TabControl1.SelectedTab Is tabSetting Then ' If the selected tab is "tabSetting"...
             lblFromTitle.Text = "Account Setting" ' Sets the text of lblFromTitle label to "Account Setting".
-            iconFromtitle.Image = Image.FromFile(destinationIconPath + settingPath) ' Sets the image of iconFromtitle PictureBox to the image located at the destinationIconPath concatenated with the settingPath file name.
+            iconFromtitle.Image = Image.FromFile(location & "\Others\icons\settings.png") ' Sets the image of iconFromtitle PictureBox to the image located at the specified path.
         Else ' For any other tab...
             lblFromTitle.Text = "Home" ' Sets the text of lblFromTitle label to "Home".
-            iconFromtitle.Image = Image.FromFile(destinationIconPath + Home) ' Sets the image of iconFromtitle PictureBox to the image located at the destinationIconPath concatenated with the Home file name.
+            iconFromtitle.Image = Image.FromFile(location & "\Others\icons\home (1).png") ' Sets the image of iconFromtitle PictureBox to the image located at the specified path.
         End If
+
     End Sub
 
 
